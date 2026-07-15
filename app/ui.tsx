@@ -13,7 +13,7 @@ export function ButtonLink({
 }: {
   children: ReactNode;
   href: string;
-  variant?: "primary" | "secondary" | "light" | "ghost";
+  variant?: "primary" | "secondary" | "light" | "ghost" | "whatsapp";
   size?: "sm" | "md";
   event?: string;
   location?: string;

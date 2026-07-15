@@ -38,7 +38,9 @@ test("server-renders the JSTACK landing contract", async () => {
   assert.match(html, /Automatización de procesos/);
   assert.match(html, /Consultoría y arquitectura/);
   assert.match(html, /Agenda una llamada/);
+  assert.match(html, /WhatsApp|Escríbenos por WhatsApp/);
   assert.match(html, /data-analytics-event="cta_booking_click"/);
+  assert.match(html, /data-analytics-event="cta_whatsapp_click"/);
   assert.doesNotMatch(html, /Codex is working|Your site is taking shape|react-loading-skeleton|codex-preview/i);
 });
 
@@ -52,6 +54,8 @@ test("keeps landing copy centralized and starter preview disconnected", async ()
   assert.match(content, /export type NavigationItem/);
   assert.match(content, /export type Service/);
   assert.match(content, /NEXT_PUBLIC_BOOKING_URL/);
+  assert.match(content, /NEXT_PUBLIC_WHATSAPP_URL/);
+  assert.match(content, /NEXT_PUBLIC_WHATSAPP_NUMBER/);
   assert.match(page, /const showProjects = process\.env\.NEXT_PUBLIC_SHOW_PROJECTS === "true"/);
   assert.match(layout, /metadataBase/);
   assert.doesNotMatch(page, /_sites-preview|SkeletonPreview|Lorem ipsum|caso de éxito/i);

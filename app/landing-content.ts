@@ -47,6 +47,15 @@ export const contactEmail =
   process.env.NEXT_PUBLIC_CONTACT_EMAIL || "hola@jstack.dev";
 
 const bookingUrl = process.env.NEXT_PUBLIC_BOOKING_URL || `mailto:${contactEmail}?subject=Agenda%20una%20llamada%20con%20JSTACK`;
+const whatsappMessage = encodeURIComponent(
+  "Hola JSTACK, quiero conversar sobre un proyecto digital."
+);
+const whatsappNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER?.replace(/\D/g, "");
+const whatsappUrl =
+  process.env.NEXT_PUBLIC_WHATSAPP_URL ||
+  (whatsappNumber
+    ? `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`
+    : `https://wa.me/?text=${whatsappMessage}`);
 
 export function withCtaContext(baseHref: string, context?: string) {
   if (!context || baseHref.startsWith("mailto:") || baseHref.startsWith("#")) {
@@ -66,6 +75,13 @@ export const primaryCta: CtaConfig = {
   label: "Agenda una llamada",
   href: bookingUrl,
   analyticsEvent: "cta_booking_click",
+  analyticsLocation: "global",
+};
+
+export const whatsappCta: CtaConfig = {
+  label: "Escríbenos por WhatsApp",
+  href: whatsappUrl,
+  analyticsEvent: "cta_whatsapp_click",
   analyticsLocation: "global",
 };
 

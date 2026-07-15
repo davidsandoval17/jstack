@@ -12,6 +12,7 @@ import {
   services,
   sprint,
   technologies,
+  whatsappCta,
 } from "./landing-content";
 import { Brand, ButtonLink, Container, SectionHeading } from "./ui";
 
@@ -32,6 +33,10 @@ const showProjects = process.env.NEXT_PUBLIC_SHOW_PROJECTS === "true";
 
 function ArrowIcon() {
   return <span className="button-icon" aria-hidden="true" />;
+}
+
+function WhatsAppIcon() {
+  return <span className="whatsapp-icon" aria-hidden="true">WA</span>;
 }
 
 function Header() {
@@ -72,6 +77,15 @@ function Header() {
             >
               {primaryCta.label}
               <ArrowIcon />
+            </ButtonLink>
+            <ButtonLink
+              href={whatsappCta.href}
+              variant="whatsapp"
+              event={whatsappCta.analyticsEvent}
+              location="mobile-menu"
+            >
+              <WhatsAppIcon />
+              WhatsApp
             </ButtonLink>
           </div>
         </details>
@@ -481,6 +495,15 @@ function FinalCta() {
             {primaryCta.label}
             <ArrowIcon />
           </ButtonLink>
+          <ButtonLink
+            href={whatsappCta.href}
+            variant="whatsapp"
+            event={whatsappCta.analyticsEvent}
+            location="final"
+          >
+            <WhatsAppIcon />
+            {whatsappCta.label}
+          </ButtonLink>
           <small>Llamada de diagnóstico de 20-30 minutos · Sin compromiso · Perú y Latinoamérica</small>
         </div>
       </Container>
@@ -502,11 +525,35 @@ function Footer() {
         </nav>
         <div>
           <a href={primaryCta.href}>{primaryCta.label}</a>
+          <a href={whatsappCta.href}>WhatsApp</a>
           <span>{footer.coverage}</span>
           <small>{footer.legal}</small>
         </div>
       </Container>
     </footer>
+  );
+}
+
+function MobileContactBar() {
+  return (
+    <nav className="mobile-contact-bar" aria-label="Acciones rápidas de contacto">
+      <a
+        href={whatsappCta.href}
+        data-analytics-event={whatsappCta.analyticsEvent}
+        data-analytics-location="mobile-sticky"
+      >
+        <WhatsAppIcon />
+        WhatsApp
+      </a>
+      <a
+        href={primaryCta.href}
+        data-analytics-event={primaryCta.analyticsEvent}
+        data-analytics-location="mobile-sticky"
+      >
+        Agenda
+        <ArrowIcon />
+      </a>
+    </nav>
   );
 }
 
@@ -525,6 +572,7 @@ export default function Home() {
       <AboutSection />
       <FinalCta />
       <Footer />
+      <MobileContactBar />
     </main>
   );
 }
