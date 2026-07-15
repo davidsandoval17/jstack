@@ -1,0 +1,13 @@
+import Link from "next/link";
+import { Brand, ButtonLink, Container, SectionHeading } from "../ui";
+
+const colors = [["Blue / Primary","#2563EB"],["Cyan / Accent","#00B8FF"],["Violet / Accent","#7C3AED"],["Ink / Background","#08111F"],["Navy / Surface","#0F172A"],["Slate / Muted","#94A3B8"]];
+
+export default function DesignSystemPage(){return <main className="ds-page"><Container>
+  <header className="ds-header"><Brand/><Link href="/">← Volver a la landing</Link></header>
+  <section className="ds-hero"><p className="section-index">[ JSTACK DESIGN SYSTEM / V1.0 ]</p><h1>Foundations para una experiencia clara, tecnológica y humana.</h1><p>La primera capa implementada del sistema visual JSTACK: tokens, tipografía, controles y reglas de composición.</p></section>
+  <section className="ds-section"><SectionHeading eyebrow="Color" title="Paleta semántica" description="Azul para acción, cian y violeta para énfasis controlado, y una base oscura de alto contraste."/><div className="ds-colors">{colors.map(([name,value])=><div key={value}><span style={{background:value}}/><strong>{name}</strong><code>{value}</code></div>)}</div></section>
+  <section className="ds-section"><SectionHeading eyebrow="Tipografía" title="Jerarquía editorial" description="Space Grotesk aporta carácter a titulares; Inter mantiene claridad en contenido e interfaz."/><div className="ds-type"><div><small>DISPLAY / 72</small><h2>Diseñamos sistemas que fluyen.</h2></div><div><small>BODY / 18</small><p>Producto, experiencia e ingeniería conectados a una decisión de negocio.</p></div></div></section>
+  <section className="ds-section"><SectionHeading eyebrow="Componentes" title="Acciones y marcas" description="Variantes esenciales para construir la landing y las siguientes páginas comerciales."/><div className="ds-components"><ButtonLink href="#">Acción primaria ↗</ButtonLink><ButtonLink href="#" variant="secondary">Acción secundaria</ButtonLink><div className="ds-dark"><Brand light/><ButtonLink href="#" variant="light">Sobre fondo oscuro</ButtonLink></div></div></section>
+  <section className="ds-section"><SectionHeading eyebrow="Principios" title="Flow Architecture" description="Cada composición muestra una ruta: entrada, decisión, conexión y resultado."/><div className="ds-principles"><article><span>01</span><h3>Claridad primero</h3><p>Jerarquía visible, contenido preciso y espacio negativo.</p></article><article><span>02</span><h3>Movimiento con propósito</h3><p>El motion explica relaciones y cambios de estado.</p></article><article><span>03</span><h3>Tecnología sobria</h3><p>Precisión visual sin clichés futuristas ni exceso decorativo.</p></article></div></section>
+</Container></main>}
