@@ -2,17 +2,24 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import {
   ArrowUpRight,
+  Bug,
   CalendarDays,
   CheckCircle2,
   Compass,
+  Code2,
   Layers3,
+  ListChecks,
   Menu,
   MessageCircle,
   PanelsTopLeft,
+  Palette,
+  RefreshCw,
   Rocket,
+  Search,
   ShieldCheck,
   Sparkles,
   TimerReset,
+  UploadCloud,
   Workflow,
 } from "lucide-react";
 import {
@@ -55,6 +62,7 @@ function WhatsAppIcon() {
 }
 
 const serviceIcons = [Rocket, PanelsTopLeft, Workflow, Compass];
+const processIcons = [Search, ListChecks, Palette, Code2, Bug, UploadCloud, RefreshCw];
 
 function Header() {
   return (
@@ -396,13 +404,20 @@ function ProcessSection() {
           description="Cada etapa convierte decisiones abiertas en entregables concretos. El objetivo no es acumular documentación, sino mantener alineados negocio, experiencia y tecnología hasta el lanzamiento."
         />
         <div className="process-line">
-          {processSteps.map((step) => (
+          {processSteps.map((step, index) => {
+            const ProcessIcon = processIcons[index] ?? Workflow;
+            return (
             <article key={step.order}>
-              <span>{step.order}</span>
+              <div className="process-meta">
+                <span>{step.order}</span>
+                <i className="process-icon" aria-hidden="true">
+                  <ProcessIcon size={21} strokeWidth={2.1} />
+                </i>
+              </div>
               <h3>{step.title}</h3>
               <p>{step.description}</p>
             </article>
-          ))}
+          )})}
         </div>
         <p className="process-note">
           Los cambios que modifican el flujo, los roles, las pantallas o las integraciones
