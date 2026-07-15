@@ -23,6 +23,7 @@ import {
   Workflow,
 } from "lucide-react";
 import {
+  contactWhatsapp,
   footer,
   hero,
   navigation,
@@ -572,7 +573,7 @@ function Footer() {
         </nav>
         <div>
           <a href={primaryCta.href}>{primaryCta.label}</a>
-          <a href={whatsappCta.href}>WhatsApp</a>
+          <a href={whatsappCta.href}>WhatsApp {contactWhatsapp}</a>
           <span>{footer.coverage}</span>
           <small>{footer.legal}</small>
         </div>

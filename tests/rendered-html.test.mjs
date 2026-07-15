@@ -41,6 +41,8 @@ test("server-renders the JSTACK landing contract", async () => {
   assert.match(html, /Consultoría y arquitectura/);
   assert.match(html, /Agenda una llamada/);
   assert.match(html, /WhatsApp|Escríbenos por WhatsApp/);
+  assert.match(html, /903 081 410/);
+  assert.match(html, /https:\/\/wa\.me\/51903081410/);
   assert.match(html, /data-analytics-event="cta_booking_click"/);
   assert.match(html, /data-analytics-event="cta_whatsapp_click"/);
   assert.doesNotMatch(html, /Codex is working|Your site is taking shape|react-loading-skeleton|codex-preview/i);

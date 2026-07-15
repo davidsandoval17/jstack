@@ -45,12 +45,14 @@ export type ProjectDemo = {
 
 export const contactEmail =
   process.env.NEXT_PUBLIC_CONTACT_EMAIL || "hola@jstack.dev";
+export const contactWhatsapp = "903 081 410";
 
 const bookingUrl = process.env.NEXT_PUBLIC_BOOKING_URL || `mailto:${contactEmail}?subject=Agenda%20una%20llamada%20con%20JSTACK`;
 const whatsappMessage = encodeURIComponent(
   "Hola JSTACK, quiero conversar sobre un proyecto digital."
 );
-const whatsappNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER?.replace(/\D/g, "");
+const whatsappNumber =
+  process.env.NEXT_PUBLIC_WHATSAPP_NUMBER?.replace(/\D/g, "") || "51903081410";
 const whatsappUrl =
   process.env.NEXT_PUBLIC_WHATSAPP_URL ||
   (whatsappNumber
