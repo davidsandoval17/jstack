@@ -89,8 +89,27 @@ actions tied to the current ChatGPT user. Leave public content anonymous.
 
 - `npm run dev`: start local development
 - `npm run build`: verify the vinext build output
+- `npm run build:vercel`: verify the Next.js build used by Vercel
 - `npm test`: build the starter and verify its rendered loading skeleton
 - `npm run db:generate`: generate Drizzle migrations after schema changes
+
+## CI/CD with Vercel
+
+This repository includes GitHub Actions workflows for:
+
+- CI on pull requests and pushes to `main` or `master`
+- Vercel Preview deployments for pull requests
+- Vercel Production deployments on pushes to `main` or `master`
+
+Add these GitHub repository secrets before enabling deployments:
+
+- `VERCEL_TOKEN`
+- `VERCEL_ORG_ID`
+- `VERCEL_PROJECT_ID`
+
+The Vercel workflows use `npx vercel@latest pull`, `npx vercel@latest build`,
+and `npx vercel@latest deploy --prebuilt` so the deployment uses the same build
+artifact that was validated in CI.
 
 ## Learn More
 
