@@ -33,7 +33,9 @@ test("server-renders the JSTACK landing contract", async () => {
   assert.match(html, /Construimos productos digitales que cambian negocios\./);
   assert.match(html, /MVP Build Sprint/);
   assert.match(html, /4-6 semanas|4 a 6 semanas/);
-  assert.match(html, /Desde S\/ 4,800/);
+  assert.match(html, /Alcance compacto/);
+  assert.match(html, /Ajustada al alcance/);
+  assert.doesNotMatch(html, /4,800|4800|S\/\s*4/i);
   assert.match(html, /Aplicaciones web/);
   assert.match(html, /Automatización de procesos/);
   assert.match(html, /Consultoría y arquitectura/);
@@ -45,12 +47,14 @@ test("server-renders the JSTACK landing contract", async () => {
 });
 
 test("keeps landing copy centralized and starter preview disconnected", async () => {
-  const [content, page, layout] = await Promise.all([
+  const [content, page, layout, packageJson] = await Promise.all([
     readFile(new URL("../app/landing-content.ts", import.meta.url), "utf8"),
     readFile(new URL("../app/page.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/layout.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../package.json", import.meta.url), "utf8"),
   ]);
 
+  assert.match(packageJson, /"lucide-react"/);
   assert.match(content, /export type NavigationItem/);
   assert.match(content, /export type Service/);
   assert.match(content, /NEXT_PUBLIC_BOOKING_URL/);

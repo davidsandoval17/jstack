@@ -1,6 +1,21 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import {
+  ArrowUpRight,
+  CalendarDays,
+  CheckCircle2,
+  Compass,
+  Layers3,
+  Menu,
+  MessageCircle,
+  PanelsTopLeft,
+  Rocket,
+  ShieldCheck,
+  Sparkles,
+  TimerReset,
+  Workflow,
+} from "lucide-react";
+import {
   footer,
   hero,
   navigation,
@@ -32,12 +47,14 @@ export const metadata: Metadata = {
 const showProjects = process.env.NEXT_PUBLIC_SHOW_PROJECTS === "true";
 
 function ArrowIcon() {
-  return <span className="button-icon" aria-hidden="true" />;
+  return <ArrowUpRight size={16} strokeWidth={2.4} aria-hidden="true" />;
 }
 
 function WhatsAppIcon() {
-  return <span className="whatsapp-icon" aria-hidden="true">WA</span>;
+  return <MessageCircle size={18} strokeWidth={2.4} aria-hidden="true" />;
 }
+
+const serviceIcons = [Rocket, PanelsTopLeft, Workflow, Compass];
 
 function Header() {
   return (
@@ -62,7 +79,7 @@ function Header() {
         </ButtonLink>
         <details className="mobile-menu">
           <summary aria-label="Abrir menú">
-            <span />
+            <Menu size={20} strokeWidth={2.4} aria-hidden="true" />
           </summary>
           <div className="mobile-menu-panel">
             {navigation.map((item) => (
@@ -104,22 +121,28 @@ function HeroVisual() {
         <strong>FLOW ARCHITECTURE</strong>
       </div>
       <div className="visual-stage">
+        <span className="energy-ring ring-one" />
+        <span className="energy-ring ring-two" />
         <div className="visual-module module-input">
+          <Layers3 size={18} strokeWidth={2.2} aria-hidden="true" />
           <small>INPUT</small>
           <strong>Prototipo</strong>
           <span>Flujo definido</span>
         </div>
         <div className="visual-module module-scope">
+          <Workflow size={18} strokeWidth={2.2} aria-hidden="true" />
           <small>01</small>
           <strong>Alcance</strong>
           <span>1 flujo principal</span>
         </div>
         <div className="visual-module module-build">
+          <Rocket size={18} strokeWidth={2.2} aria-hidden="true" />
           <small>02</small>
           <strong>Producto</strong>
           <span>Web app desplegada</span>
         </div>
         <div className="visual-module module-output">
+          <CheckCircle2 size={18} strokeWidth={2.2} aria-hidden="true" />
           <small>OUTPUT</small>
           <strong>Validación</strong>
           <span>Usuarios reales</span>
@@ -129,17 +152,21 @@ function HeroVisual() {
         <span className="flow-path path-three" />
         <span className="moving-dot dot-one" />
         <span className="moving-dot dot-two" />
+        <span className="moving-dot dot-three" />
       </div>
       <div className="visual-metrics">
         <div>
+          <TimerReset size={18} strokeWidth={2.2} aria-hidden="true" />
           <span>4-6</span>
           <small>semanas</small>
         </div>
         <div>
+          <PanelsTopLeft size={18} strokeWidth={2.2} aria-hidden="true" />
           <span>8</span>
           <small>pantallas base</small>
         </div>
         <div>
+          <ShieldCheck size={18} strokeWidth={2.2} aria-hidden="true" />
           <span>15</span>
           <small>días garantía</small>
         </div>
@@ -264,10 +291,13 @@ function ServicesSection() {
           description="Desde una primera versión validable hasta una plataforma a medida o la automatización de una operación, JSTACK adapta el alcance al problema y al momento del negocio."
         />
         <div className="services-grid">
-          {services.map((service) => (
+          {services.map((service, index) => {
+            const ServiceIcon = serviceIcons[index] ?? Sparkles;
+            return (
             <article className={`service-card ${service.featured ? "service-featured" : ""}`} key={service.order}>
               <div className="service-head">
                 <span>{service.order}</span>
+                <i className="service-icon" aria-hidden="true"><ServiceIcon size={20} strokeWidth={2.1} /></i>
                 <small>{service.kicker}</small>
               </div>
               <h3>{service.title}</h3>
@@ -297,7 +327,7 @@ function ServicesSection() {
                 <ArrowIcon />
               </ButtonLink>
             </article>
-          ))}
+          )})}
         </div>
       </Container>
     </section>
@@ -322,6 +352,7 @@ function SprintSection() {
               event={sprint.cta.analyticsEvent}
               location="mvp"
             >
+              <CalendarDays size={18} strokeWidth={2.3} aria-hidden="true" />
               {sprint.cta.label}
               <ArrowIcon />
             </ButtonLink>
@@ -491,7 +522,8 @@ function FinalCta() {
             variant="light"
             event={primaryCta.analyticsEvent}
             location="final"
-          >
+            >
+            <CalendarDays size={18} strokeWidth={2.3} aria-hidden="true" />
             {primaryCta.label}
             <ArrowIcon />
           </ButtonLink>
@@ -550,6 +582,7 @@ function MobileContactBar() {
         data-analytics-event={primaryCta.analyticsEvent}
         data-analytics-location="mobile-sticky"
       >
+        <CalendarDays size={17} strokeWidth={2.3} aria-hidden="true" />
         Agenda
         <ArrowIcon />
       </a>

@@ -145,7 +145,7 @@ export const services: Service[] = [
     title: "MVP Build Sprint",
     description:
       "Convierte un prototipo o proceso definido en una aplicación web funcional, desplegada y lista para validarse en 4 a 6 semanas.",
-    meta: "4-6 semanas · Desde S/ 4,800",
+    meta: "4-6 semanas · Alcance compacto",
     fit: "Para founders y negocios con un prototipo o proceso definido que necesitan una versión funcional para validar.",
     outcome: "Aplicación web desplegada con un flujo principal, hasta dos roles, hasta ocho pantallas base y una integración sencilla.",
     limit: "No es una fase de ideación ni un proyecto abierto sin límites.",
@@ -225,8 +225,8 @@ export const sprint = {
   ],
   payment: [
     ["Duración objetivo", "4 a 6 semanas"],
-    ["Inversión base", "Desde S/ 4,800"],
-    ["Pagos", "50% / 30% / 20%"],
+    ["Inversión", "Ajustada al alcance"],
+    ["Plan", "Trabajo por hitos"],
     ["Inicio", "Alcance aprobado y primer pago confirmado"],
   ],
   qualification: [
