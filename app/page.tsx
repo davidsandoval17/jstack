@@ -135,7 +135,7 @@ function FinalCta() {
       <small>Atención directa · Cuento con RUC y emito recibos por honorarios · {footer.coverage}</small>
     </div>
   </Container>
-  <Container><nav className="social-links" aria-label="Redes sociales de JSTACK">{socialLinks.map(item => <a key={item.label} href={item.href}><SocialIcon name={item.icon} size={26} /><strong>{item.label}<ArrowIcon /></strong><span>{item.description}</span></a>)}</nav></Container>
+  <Container><nav className="social-links" aria-label="Redes sociales de JSTACK">{socialLinks.map(item => <a key={item.label} href={item.href}><div className="social-link-heading"><i className="social-link-icon"><SocialIcon name={item.icon} size={22} /></i><strong>{item.label}</strong><ArrowIcon /></div><span>{item.description}</span></a>)}</nav></Container>
   </section>;
 }
 
@@ -157,3 +157,4 @@ function MobileContactBar() {
 export default function Home() {
   return <main><Header /><HeroSection /><ServicesSection /><ProductPhoneShowcase screens={showcaseScreens} contactHref={whatsappLink("Hola David, vi las demos de JSTACK y quiero conversar sobre una idea para mi negocio.")} /><ProcessSection /><AboutSection /><TechnologySection /><FaqSection /><FinalCta /><Footer /><MobileContactBar /></main>;
 }
+
