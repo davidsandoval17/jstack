@@ -37,6 +37,7 @@ export const socialLinks = [
 
 export const navigation: NavigationItem[] = [
   { label: "Qué puedo hacer", href: "#servicios" },
+  { label: "Demos", href: "#demos" },
   { label: "Cómo empezamos", href: "#proceso" },
   { label: "Sobre mí", href: "#nosotros" },
   { label: "Contacto", href: "#contacto" },

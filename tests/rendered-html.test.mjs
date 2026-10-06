@@ -63,3 +63,20 @@ test("keeps landing copy centralized and starter preview disconnected", async ()
   assert.match(layout, /metadataBase/);
   assert.doesNotMatch(page, /_sites-preview|SkeletonPreview|Lorem ipsum|caso de éxito/i);
 });
+
+test("showcase remains complete and usable before JavaScript loads", async () => {
+  const response = await render();
+  const html = await response.text();
+  assert.match(html, /id="demos"[^>]*data-mode="static"/);
+  for (const name of ["admin", "ecommerce", "pwa", "automation"]) {
+    assert.match(html, new RegExp(`id="demo-${name}"`));
+    assert.match(html, new RegExp(`src="/showcase/${name}-mobile\\.webp"[^>]*alt="[^"]+"`));
+    const asset = await readFile(new URL(`../public/showcase/${name}-mobile.webp`, import.meta.url));
+    assert.equal(asset.toString("ascii", 0, 4), "RIFF");
+    assert.equal(asset.toString("ascii", 8, 12), "WEBP");
+    assert.ok(asset.length < 50_000, `${name} texture should stay below 50 KB`);
+  }
+  assert.match(html, /MOCKUPS DE CONCEPTO/);
+  assert.match(html, /Datos ficticios/);
+  assert.doesNotMatch(html, /<canvas/);
+});

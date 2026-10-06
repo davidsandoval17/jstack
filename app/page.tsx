@@ -3,6 +3,8 @@ import { ArrowUpRight, CheckCircle2, ChevronDown, Code2, MessageSquare, Globe, M
 import { contactEmail, contactWhatsappDisplay, emailHref, faqs, footer, hero, navigation, primaryCta, processSteps, services, socialLinks, technologies, whatsappCta, whatsappLink } from "./landing-content";
 import { Brand, ButtonLink, Container, SectionHeading } from "./ui";
 import { MobileMenu } from "./mobile-menu";
+import { ProductPhoneShowcase } from "./showcase/ProductPhoneShowcase";
+import { showcaseScreens } from "./showcase/screens";
 
 export const metadata: Metadata = {
   title: { absolute: "JSTACK | Presencia digital para tu negocio" },
@@ -146,5 +148,5 @@ function MobileContactBar() {
 }
 
 export default function Home() {
-  return <main><Header /><HeroSection /><ServicesSection /><ProcessSection /><AboutSection /><TechnologySection /><FaqSection /><FinalCta /><Footer /><MobileContactBar /></main>;
+  return <main><Header /><HeroSection /><ServicesSection /><ProductPhoneShowcase screens={showcaseScreens} contactHref={whatsappLink("Hola David, vi las demos de JSTACK y quiero conversar sobre una idea para mi negocio.")} /><ProcessSection /><AboutSection /><TechnologySection /><FaqSection /><FinalCta /><Footer /><MobileContactBar /></main>;
 }
