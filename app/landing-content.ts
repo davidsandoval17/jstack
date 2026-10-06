@@ -29,10 +29,10 @@ export const primaryCta = whatsappCta;
 export const emailHref = `mailto:${contactEmail}?subject=${encodeURIComponent("Quiero una web para mi negocio")}`;
 
 export const socialLinks = [
-  { label: "Facebook", href: "https://www.facebook.com/profile.php?id=61594907201063", description: "Conoce JSTACK y escríbeme por Facebook." },
-  { label: "LinkedIn", href: "https://www.linkedin.com/in/david-sandoval-645652441/", description: "Mi perfil profesional." },
-  { label: "TikTok", href: "https://www.tiktok.com/@js_stack", description: "Sígueme en @js_stack." },
-  { label: "YouTube", href: "https://www.youtube.com/channel/UClDNhSpIB0QooOdFjaxcZUQ", description: "Visita mi canal." },
+  { label: "Facebook", icon: "facebook", href: "https://www.facebook.com/profile.php?id=61594907201063", description: "Conoce JSTACK y escríbeme por Facebook." },
+  { label: "LinkedIn", icon: "linkedin", href: "https://www.linkedin.com/in/david-sandoval-645652441/", description: "Mi perfil profesional." },
+  { label: "TikTok", icon: "tiktok", href: "https://www.tiktok.com/@js_stack", description: "Sígueme en @js_stack." },
+  { label: "YouTube", icon: "youtube", href: "https://www.youtube.com/channel/UClDNhSpIB0QooOdFjaxcZUQ", description: "Visita mi canal." },
 ] as const;
 
 export const navigation: NavigationItem[] = [
@@ -104,3 +104,4 @@ export const footer = {
   coverage: "Perú y Latinoamérica",
   legal: "© 2026 JSTACK · David Sandoval",
 };
+

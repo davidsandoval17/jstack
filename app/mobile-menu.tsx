@@ -1,7 +1,8 @@
 "use client";
 
 import { useRef } from "react";
-import { Menu, MessageCircle, MessageSquare } from "lucide-react";
+import { Menu } from "lucide-react";
+import { SocialIcon } from "./social-icons";
 import { navigation, socialLinks, whatsappCta } from "./landing-content";
 import { ButtonLink } from "./ui";
 
@@ -17,8 +18,8 @@ export function MobileMenu() {
         }
       }}>
         {navigation.map(item => <a key={item.href} href={item.href}>{item.label}</a>)}
-        <ButtonLink href={whatsappCta.href} variant="whatsapp" event={whatsappCta.analyticsEvent} location="mobile-menu"><MessageCircle size={18} aria-hidden="true" /> WhatsApp</ButtonLink>
-        <ButtonLink href={socialLinks[0].href} event="cta_facebook_click" location="mobile-menu"><MessageSquare size={18} aria-hidden="true" /> Facebook</ButtonLink>
+        <ButtonLink href={whatsappCta.href} variant="whatsapp" event={whatsappCta.analyticsEvent} location="mobile-menu"><SocialIcon name="whatsapp" /> WhatsApp</ButtonLink>
+        <ButtonLink href={socialLinks[0].href} event="cta_facebook_click" location="mobile-menu"><SocialIcon name="facebook" /> Facebook</ButtonLink>
       </nav>
     </details>
   );
