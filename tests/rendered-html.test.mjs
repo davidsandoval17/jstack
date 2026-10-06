@@ -60,8 +60,28 @@ test("keeps landing copy centralized and starter preview disconnected", async ()
   assert.match(content, /export type NavigationItem/);
   assert.match(content, /NEXT_PUBLIC_WHATSAPP_URL/);
   assert.match(content, /NEXT_PUBLIC_WHATSAPP_NUMBER/);
-  assert.match(layout, /metadataBase/);
+  assert.match(layout, /siteMetadata/);
   assert.doesNotMatch(page, /_sites-preview|SkeletonPreview|Lorem ipsum|caso de éxito/i);
+});
+
+test("publishes one canonical URL, social preview and truthful structured data", async () => {
+  const html = await (await render()).text();
+  assert.match(html, /rel="canonical" href="https:\/\/jstack-six\.vercel\.app\/"/);
+  for (const attribute of ['property="og:image"', 'name="twitter:image"']) {
+    assert.ok(html.includes(`${attribute} content="https://jstack-six.vercel.app/social/jstack-presencia-digital-v1.png"`));
+  }
+  assert.match(html, /property="og:image:width" content="1200"/);
+  assert.match(html, /property="og:image:height" content="630"/);
+  assert.match(html, /name="twitter:card" content="summary_large_image"/);
+  const json = html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/);
+  assert.ok(json, "JSON-LD must be present in server-rendered HTML");
+  const schema = JSON.parse(json[1]);
+  assert.equal(schema['@graph'].find(node => node['@type'] === 'Organization').name, 'JSTACK');
+  assert.equal(schema['@graph'].find(node => node['@type'] === 'Person').name, 'David Sandoval');
+  assert.doesNotMatch(json[1], /aggregateRating|reviewCount/);
+  const png = await readFile(new URL('../public/social/jstack-presencia-digital-v1.png', import.meta.url));
+  assert.equal(png.readUInt32BE(16), 1200);
+  assert.equal(png.readUInt32BE(20), 630);
 });
 
 test("showcase remains complete and usable before JavaScript loads", async () => {

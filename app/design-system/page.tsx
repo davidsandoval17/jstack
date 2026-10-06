@@ -1,5 +1,7 @@
 import Link from "next/link";
+import type { Metadata } from "next";
 import { Brand, ButtonLink, Container, SectionHeading } from "../ui";
+export const metadata: Metadata = { title: "Guía de diseño", robots: { index: false, follow: false }, alternates: { canonical: "/design-system" } };
 
 const colors = [["Blue / Primary","#2563EB"],["Cyan / Accent","#00B8FF"],["Violet / Accent","#7C3AED"],["Ink / Background","#08111F"],["Navy / Surface","#0F172A"],["Slate / Muted","#94A3B8"]];
 

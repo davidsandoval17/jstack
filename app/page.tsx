@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import { siteMetadata, structuredData } from "./seo";
 import { ArrowUpRight, CheckCircle2, ChevronDown, Code2, Globe, Mail, MessageCircle, PanelsTopLeft, Search, UploadCloud } from "lucide-react";
 import { contactEmail, contactWhatsappDisplay, emailHref, faqs, footer, hero, navigation, primaryCta, processSteps, services, socialLinks, technologies, whatsappCta, whatsappLink } from "./landing-content";
 import { Brand, ButtonLink, Container, SectionHeading } from "./ui";
@@ -8,16 +8,7 @@ import { showcaseScreens } from "./showcase/screens";
 import { SocialIcon } from "./social-icons";
 import { TypewriterText } from "./typewriter";
 
-export const metadata: Metadata = {
-  title: { absolute: "JSTACK | Presencia digital para tu negocio" },
-  description: "David Sandoval te ayuda a darle presencia digital a tu negocio con páginas web, catálogos y contacto por WhatsApp. Atención directa en Perú y Latinoamérica.",
-  openGraph: {
-    title: "JSTACK | Tu negocio en internet. Sin complicarte.",
-    description: "Páginas web, catálogos digitales y tus redes conectadas. Hablemos por WhatsApp.",
-    type: "website",
-    locale: "es_PE",
-  },
-};
+export const metadata = { ...siteMetadata, title: { absolute: "JSTACK | Presencia digital para tu negocio" } };
 
 function ArrowIcon() { return <ArrowUpRight size={16} aria-hidden="true" />; }
 function WhatsAppIcon() { return <SocialIcon name="whatsapp" />; }
@@ -155,6 +146,6 @@ function MobileContactBar() {
 }
 
 export default function Home() {
-  return <main><Header /><HeroSection /><ServicesSection /><ProductPhoneShowcase screens={showcaseScreens} contactHref={whatsappLink("Hola David, vi las demos de JSTACK y quiero conversar sobre una idea para mi negocio.")} /><ProcessSection /><AboutSection /><TechnologySection /><FaqSection /><FinalCta /><Footer /><MobileContactBar /></main>;
+  return <main><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData).replace(/</g, "\u003c") }} /><Header /><HeroSection /><ServicesSection /><ProductPhoneShowcase screens={showcaseScreens} contactHref={whatsappLink("Hola David, vi las demos de JSTACK y quiero conversar sobre una idea para mi negocio.")} /><ProcessSection /><AboutSection /><TechnologySection /><FaqSection /><FinalCta /><Footer /><MobileContactBar /></main>;
 }
 
