@@ -3,272 +3,103 @@ export type CtaConfig = {
   href: string;
   analyticsEvent: string;
   analyticsLocation: string;
-  context?: string;
 };
 
-export type NavigationItem = {
-  label: string;
-  href: string;
-};
+export type NavigationItem = { label: string; href: string };
 
-export type Service = {
-  order: string;
-  kicker: string;
-  title: string;
-  description: string;
-  meta: string;
-  fit: string;
-  outcome: string;
-  limit: string;
-  cta: CtaConfig;
-  featured?: boolean;
-};
+export const contactEmail = process.env.NEXT_PUBLIC_CONTACT_EMAIL || "jsstack1993@gmail.com";
+const whatsappNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER?.replace(/\D/g, "") || "51903081410";
+export const contactWhatsapp = `+${whatsappNumber}`;
+export const contactWhatsappDisplay = whatsappNumber === "51903081410" ? "+51 903 081 410" : contactWhatsapp;
 
-export type ProblemCard = {
-  order: string;
-  title: string;
-  description: string;
-  symptom: string;
-};
-
-export type ProcessStep = {
-  order: string;
-  title: string;
-  description: string;
-};
-
-export type ProjectDemo = {
-  title: string;
-  description: string;
-  status: string;
-};
-
-export const contactEmail =
-  process.env.NEXT_PUBLIC_CONTACT_EMAIL || "hola@jstack.dev";
-export const contactWhatsapp = "903 081 410";
-
-const bookingUrl = process.env.NEXT_PUBLIC_BOOKING_URL || `mailto:${contactEmail}?subject=Agenda%20una%20llamada%20con%20JSTACK`;
-const whatsappMessage = encodeURIComponent(
-  "Hola JSTACK, quiero conversar sobre un proyecto digital."
-);
-const whatsappNumber =
-  process.env.NEXT_PUBLIC_WHATSAPP_NUMBER?.replace(/\D/g, "") || "51903081410";
-const whatsappUrl =
-  process.env.NEXT_PUBLIC_WHATSAPP_URL ||
-  (whatsappNumber
-    ? `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`
-    : `https://wa.me/?text=${whatsappMessage}`);
-
-export function withCtaContext(baseHref: string, context?: string) {
-  if (!context || baseHref.startsWith("mailto:") || baseHref.startsWith("#")) {
-    return baseHref;
-  }
-
-  try {
-    const url = new URL(baseHref);
-    url.searchParams.set("context", context);
-    return url.toString();
-  } catch {
-    return baseHref;
-  }
+export function whatsappLink(message: string) {
+  const url = new URL(process.env.NEXT_PUBLIC_WHATSAPP_URL || `https://wa.me/${whatsappNumber}`);
+  url.searchParams.set("text", message);
+  return url.toString();
 }
 
-export const primaryCta: CtaConfig = {
-  label: "Agenda una llamada",
-  href: bookingUrl,
-  analyticsEvent: "cta_booking_click",
-  analyticsLocation: "global",
-};
-
 export const whatsappCta: CtaConfig = {
-  label: "Escríbenos por WhatsApp",
-  href: whatsappUrl,
+  label: "Hablemos por WhatsApp",
+  href: whatsappLink("Hola David, vi JSTACK y quiero darle presencia digital a mi negocio."),
   analyticsEvent: "cta_whatsapp_click",
   analyticsLocation: "global",
 };
 
+export const primaryCta = whatsappCta;
+export const emailHref = `mailto:${contactEmail}?subject=${encodeURIComponent("Quiero una web para mi negocio")}`;
+
+export const socialLinks = [
+  { label: "Facebook", href: "https://www.facebook.com/profile.php?id=61594907201063", description: "Conoce JSTACK y escríbeme por Facebook." },
+  { label: "LinkedIn", href: "https://www.linkedin.com/in/david-sandoval-645652441/", description: "Mi perfil profesional." },
+  { label: "TikTok", href: "https://www.tiktok.com/@js_stack", description: "Sígueme en @js_stack." },
+  { label: "YouTube", href: "https://www.youtube.com/channel/UClDNhSpIB0QooOdFjaxcZUQ", description: "Visita mi canal." },
+] as const;
+
 export const navigation: NavigationItem[] = [
-  { label: "Servicios", href: "#servicios" },
-  { label: "Cómo trabajamos", href: "#proceso" },
-  { label: "Sobre JSTACK", href: "#nosotros" },
+  { label: "Qué puedo hacer", href: "#servicios" },
+  { label: "Cómo empezamos", href: "#proceso" },
+  { label: "Sobre mí", href: "#nosotros" },
+  { label: "Contacto", href: "#contacto" },
 ];
 
 export const hero = {
-  eyebrow: "JSTACK / SOFTWARE STUDIO",
-  title: "Construimos productos digitales que cambian negocios.",
-  description:
-    "JSTACK ayuda a startups y negocios en crecimiento a convertir prototipos y procesos definidos en MVPs, aplicaciones web y automatizaciones claras, sólidas y listas para validar y crecer.",
-  support: ["MVPs", "Aplicaciones web", "Automatización", "Arquitectura"],
-  coverage: "Perú y Latinoamérica",
+  eyebrow: "JSTACK / PRESENCIA DIGITAL PARA NEGOCIOS",
+  title: "Tu negocio en internet. Sin complicarte.",
+  description: "Te ayudo a dar el primer paso con una web que muestre lo que ofreces, conecte tus redes y facilite que tus clientes te escriban por WhatsApp.",
+  support: ["Páginas web", "Catálogos digitales", "Contacto por WhatsApp"],
+  coverage: "Atención directa con David Sandoval · Perú y Latinoamérica",
 };
 
-export const problems: ProblemCard[] = [
+export const services = [
   {
-    order: "01",
-    title: "Falta de definición",
-    description:
-      "Cuando el problema, el usuario o el flujo no están claros, el proyecto acumula cambios antes de demostrar valor.",
-    symptom: "Alcance que nunca se cierra.",
-  },
-  {
-    order: "02",
-    title: "Tecnología sin contexto",
-    description:
-      "Elegir herramientas antes de entender el negocio puede aumentar costo, complejidad y deuda técnica.",
-    symptom: "Arquitectura sobredimensionada.",
-  },
-  {
-    order: "03",
-    title: "Construir demasiado pronto",
-    description:
-      "Una primera versión debe probar la hipótesis principal, no intentar resolver todo el negocio desde el inicio.",
-    symptom: "Meses sin validar.",
-  },
-  {
-    order: "04",
-    title: "Entregas difíciles de evolucionar",
-    description:
-      "Código sin estructura, documentación ni criterio de producto convierte cada cambio en riesgo.",
-    symptom: "Dependencia y retrabajo.",
-  },
-];
-
-export const pillars = [
-  ["Negocio primero", "Antes de construir, aclaramos qué resultado debe producir la solución y qué no necesita entrar todavía.", "Reduce alcance innecesario."],
-  ["Arquitectura con intención", "Diseñamos una estructura suficiente para lanzar y mantenible para la siguiente etapa.", "Evita complejidad prematura."],
-  ["Producto de extremo a extremo", "Definición, experiencia, desarrollo, validación y despliegue trabajan como un solo proceso.", "Menos pérdida entre disciplinas."],
-  ["Claridad y cercanía", "Explicamos avances, riesgos y trade-offs sin esconderlos detrás de jerga técnica.", "Comunicación directa."],
-] as const;
-
-export const services: Service[] = [
-  {
-    order: "01",
-    kicker: "Oferta principal",
-    title: "MVP Build Sprint",
-    description:
-      "Convierte un prototipo o proceso definido en una aplicación web funcional, desplegada y lista para validarse en 4 a 6 semanas.",
-    meta: "4-6 semanas · Alcance compacto",
-    fit: "Para founders y negocios con un prototipo o proceso definido que necesitan una versión funcional para validar.",
-    outcome: "Aplicación web desplegada con un flujo principal, hasta dos roles, hasta ocho pantallas base y una integración sencilla.",
-    limit: "No es una fase de ideación ni un proyecto abierto sin límites.",
-    cta: {
-      label: "Validar si mi proyecto encaja",
-      href: withCtaContext(bookingUrl, "MVP Build Sprint"),
-      analyticsEvent: "cta_qualification_click",
-      analyticsLocation: "mvp",
-    },
+    title: "Una web para tu negocio",
+    kicker: "PARA EMPEZAR",
+    description: "Un lugar propio para presentar tus servicios, contar quién eres y dejar tus contactos siempre a mano.",
+    includes: ["Diseño adaptable a celular", "Tus servicios, fotos e información", "Botón de WhatsApp y enlaces a tus redes"],
+    message: "Hola David, quiero una página web para mi negocio.",
+    cta: "Quiero mi página web",
     featured: true,
   },
   {
-    order: "02",
-    kicker: "Desarrollo a medida",
-    title: "Aplicaciones web",
-    description:
-      "Plataformas, portales, dashboards y sistemas construidos alrededor de tu operación, tus usuarios y tus objetivos de crecimiento.",
-    meta: "Alcance personalizado",
-    fit: "Para productos y operaciones que requieren más módulos, reglas o evolución que el alcance de un sprint base.",
-    outcome: "Solución web diseñada alrededor del negocio: portales, sistemas internos, dashboards, marketplaces o plataformas especializadas.",
-    limit: "No se cotiza sin diagnóstico y alcance progresivo.",
-    cta: {
-      label: "Hablar sobre mi aplicación",
-      href: withCtaContext(bookingUrl, "Aplicación web"),
-      analyticsEvent: "cta_service_click",
-      analyticsLocation: "web-app",
-    },
+    title: "Tu catálogo en un enlace",
+    kicker: "PARA MOSTRAR LO QUE VENDES",
+    description: "Organiza tus productos o servicios para compartirlos por WhatsApp, Facebook o desde tu perfil.",
+    includes: ["Productos, fotos y precios", "Categorías fáciles de explorar", "Consultas por WhatsApp"],
+    message: "Hola David, quiero un catálogo digital para mi negocio.",
+    cta: "Quiero mostrar mi catálogo",
+    featured: false,
   },
   {
-    order: "03",
-    kicker: "Eficiencia operativa",
-    title: "Automatización de procesos",
-    description:
-      "Digitalizamos tareas manuales, conectamos herramientas y creamos flujos que reducen errores, seguimiento repetitivo y trabajo operativo.",
-    meta: "Diagnóstico del proceso",
-    fit: "Para equipos que dependen de hojas de cálculo, mensajes, copiado manual o seguimiento fragmentado.",
-    outcome: "Flujo digital con captura, estados, alertas, integraciones, panel de gestión y métricas cuando corresponda.",
-    limit: "No prometemos automatización total sin mapear excepciones, responsables y calidad de datos.",
-    cta: {
-      label: "Revisar mi proceso",
-      href: withCtaContext(bookingUrl, "Automatización"),
-      analyticsEvent: "cta_service_click",
-      analyticsLocation: "automation",
-    },
-  },
-  {
-    order: "04",
-    kicker: "Decisiones técnicas",
-    title: "Consultoría y arquitectura",
-    description:
-      "Analizamos tu producto, identificamos riesgos y definimos una ruta priorizada para estabilizar, integrar o escalar la solución.",
-    meta: "Diagnóstico y plan de acción",
-    fit: "Para productos existentes con deuda técnica, lentitud, problemas de integración o dudas sobre su siguiente etapa.",
-    outcome: "Diagnóstico, mapa de riesgos, decisiones recomendadas y plan de acción priorizado.",
-    limit: "La consultoría no implica automáticamente ejecución; la implementación se cotiza por separado.",
-    cta: {
-      label: "Solicitar diagnóstico",
-      href: withCtaContext(bookingUrl, "Consultoría"),
-      analyticsEvent: "cta_service_click",
-      analyticsLocation: "consulting",
-    },
+    title: "Conecta tu presencia digital",
+    kicker: "PARA ORDENAR TUS CANALES",
+    description: "Una página sencilla que reúna tus enlaces, explique lo que haces y lleve a tus clientes al canal correcto.",
+    includes: ["Presentación de tu negocio", "Enlaces a tus perfiles sociales", "Correo y WhatsApp en un solo lugar"],
+    message: "Hola David, quiero reunir los enlaces y contactos de mi negocio.",
+    cta: "Quiero conectar mis canales",
+    featured: false,
   },
 ];
 
-export const sprint = {
-  title: "Una primera versión funcional, con alcance controlado.",
-  description:
-    "El JSTACK MVP Build Sprint está diseñado para founders y negocios que ya tienen un prototipo o proceso definido y necesitan convertirlo en una aplicación web lista para validarse con usuarios reales.",
-  cta: services[0].cta,
-  scope: [
-    "1 flujo principal",
-    "Hasta 2 roles",
-    "Hasta 8 pantallas base",
-    "1 integración sencilla",
-    "Despliegue",
-    "15 días de garantía",
-  ],
-  payment: [
-    ["Duración objetivo", "4 a 6 semanas"],
-    ["Inversión", "Ajustada al alcance"],
-    ["Plan", "Trabajo por hitos"],
-    ["Inicio", "Alcance aprobado y primer pago confirmado"],
-  ],
-  qualification: [
-    ["Sí encaja", "Tienes prototipo, requerimientos priorizados o un proceso manual concreto."],
-    ["Sí encaja", "Puedes concentrar la primera versión en un flujo principal."],
-    ["Sí encaja", "Existe una persona disponible para decidir y validar."],
-    ["No encaja todavía", "Solo tienes una idea sin usuario, flujo ni resultado definido."],
-    ["No encaja todavía", "Necesitas múltiples productos, apps nativas y módulos críticos en el mismo sprint."],
-    ["No encaja todavía", "No hay responsable de decisión ni disponibilidad para revisar avances."],
-  ],
-};
-
-export const processSteps: ProcessStep[] = [
-  ["01", "Diagnóstico", "Entendemos el problema, la operación actual, los usuarios, el resultado esperado y las restricciones."],
-  ["02", "Definición", "Priorizamos el flujo principal, cerramos límites, criterios de aceptación y responsabilidades."],
-  ["03", "Diseño funcional", "Ordenamos pantallas, estados e interacciones; aplicamos diseño visual básico cuando no existe un prototipo final."],
-  ["04", "Desarrollo", "Construimos frontend, backend, datos e integración con entregas demostrables."],
-  ["05", "Validación", "Probamos el flujo principal, corregimos defectos y validamos el resultado contra el alcance."],
-  ["06", "Lanzamiento", "Desplegamos, configuramos el entorno y realizamos la entrega operativa."],
-  ["07", "Evolución", "Revisamos aprendizajes, nuevas prioridades y el siguiente alcance sin mezclarlo con el sprint cerrado."],
-].map(([order, title, description]) => ({ order, title, description }));
-
-export const projectDemos: ProjectDemo[] = [
-  {
-    title: "SaaS Admin Dashboard",
-    description: "Dashboard con autenticación, métricas, gestión de datos y un flujo de negocio completo para una operación SaaS.",
-    status: "Demo comercial",
-  },
-  {
-    title: "Operations Automation Panel",
-    description: "Panel para registrar solicitudes, gestionar estados, filtrar operaciones y visualizar mejoras frente al proceso manual.",
-    status: "Demo comercial",
-  },
+export const processSteps = [
+  { order: "01", title: "Me cuentas tu negocio", description: "Escríbeme por WhatsApp. Revisamos qué ofreces, a quién quieres llegar y qué necesitas mostrar." },
+  { order: "02", title: "Definimos lo esencial", description: "Te propongo una versión sencilla, con entregables, precio y fecha de entrega antes de comenzar." },
+  { order: "03", title: "La preparo y revisamos", description: "Con tus textos, fotos y datos construyo tu página. Revisamos juntos cómo se ve y cómo funciona." },
+  { order: "04", title: "Lista para compartir", description: "Publicamos y te explico cómo usar tu enlace en redes, WhatsApp y la presentación de tu negocio." },
 ];
 
 export const technologies = ["Next.js", "TypeScript", "NestJS", "PostgreSQL", "Docker", "APIs e integraciones"];
 
+export const faqs = [
+  { question: "¿Puedo empezar si todavía no tengo una web?", answer: "Sí. Empezamos por lo esencial: qué hace tu negocio, qué quieres mostrar y cómo te contactan. Si ya tienes redes, las conectamos con tu nueva página." },
+  { question: "¿Cuánto cuesta y cuánto tarda?", answer: "Depende de las secciones, el contenido y las funciones. Te confirmo precio y fecha antes de empezar. Para avanzar rápido, priorizamos una primera versión sencilla y acordamos cuándo me entregas los materiales." },
+  { question: "¿Qué tengo que enviarte?", answer: "El nombre de tu negocio, una descripción, tus servicios o productos, fotos que puedas utilizar y datos de contacto. Si te falta algo, te indico qué necesitamos para comenzar." },
+  { question: "¿Incluye dominio, hosting o mantenimiento?", answer: "Lo detallamos en la propuesta: qué está incluido, qué se paga aparte y qué costos son recurrentes. También acordamos quién controla las cuentas y cómo se entrega la web." },
+  { question: "¿También administras mis redes o haces publicidad?", answer: "Esta oferta se enfoca en tu web, catálogo y conexión con tus perfiles. La publicación de contenido, gestión de redes y campañas publicitarias no están incluidas." },
+  { question: "¿Emites comprobante por el servicio?", answer: "Sí. Cuento con RUC y puedo emitir recibos por honorarios. Lo coordinamos al definir el servicio y las condiciones de pago." },
+];
+
 export const footer = {
-  brand: "JSTACK · Software Studio",
-  statement: "Construimos productos digitales que cambian negocios.",
-  legal: "© 2026 JSTACK. Todos los derechos reservados.",
+  statement: "Presencia digital sencilla para que tu negocio dé el siguiente paso.",
   coverage: "Perú y Latinoamérica",
+  legal: "© 2026 JSTACK · David Sandoval",
 };

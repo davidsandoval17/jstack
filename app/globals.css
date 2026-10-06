@@ -2210,3 +2210,64 @@ footer {
     transition-duration: .01ms !important;
   }
 }
+
+/* Presence offer: retain the JSTACK palette, typography and components. */
+.presence-card {
+  padding: 38px;
+  border: 1px solid rgba(148, 163, 184, .25);
+  border-radius: var(--radius-lg);
+  background: rgba(15, 23, 42, .75);
+  box-shadow: var(--shadow-soft);
+}
+.presence-card h2 { color: var(--white); font-size: clamp(28px, 3vw, 42px); line-height: 1.15; }
+.presence-benefits { list-style: none; margin: 30px 0; padding: 0; display: grid; gap: 22px; }
+.presence-benefits li { display: flex; align-items: flex-start; gap: 16px; }
+.presence-benefits svg { flex: 0 0 auto; color: var(--cyan); margin-top: 3px; }
+.presence-benefits strong { color: var(--white); font-size: 15px; }
+.presence-benefits p { color: #c6d6ee; font-size: 13px; margin: 4px 0 0; }
+.presence-contact { display: flex; align-items: center; gap: 14px; border-top: 1px solid rgba(148, 163, 184, .25); padding-top: 22px; color: var(--white); }
+.presence-contact > svg:first-child { color: var(--success); }
+.presence-contact span { flex: 1; font-size: 12px; color: #c6d6ee; }
+.presence-contact strong { display: block; font-size: 21px; color: var(--white); margin-top: 4px; }
+.presence-services { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.presence-services .service-featured { grid-column: auto; grid-row: auto; min-height: 0; }
+.presence-services .service-card { display: flex; flex-direction: column; padding: 30px; }
+.presence-services .service-card h3 { font-size: 30px; margin-top: 30px; }
+.service-includes { list-style: none; padding: 0; margin: 25px 0 30px; display: grid; gap: 14px; font-size: 13px; }
+.service-includes li { display: flex; gap: 10px; line-height: 1.5; }
+.service-includes svg { flex: 0 0 auto; margin-top: 2px; color: var(--blue); }
+.service-featured .service-includes { color: #d4deec; }
+.service-featured .service-includes svg { color: var(--cyan); }
+.presence-services .button { margin-top: auto; min-width: 0; }
+.presence-process { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.profile-link { display: inline-flex; align-items: center; gap: 10px; margin-top: 24px; color: var(--blue-strong); font-weight: 750; }
+.faq-list { max-width: 860px; margin: 40px auto 0; }
+.faq-list details { border-bottom: 1px solid var(--line); padding: 22px 0; }
+.faq-list summary { cursor: pointer; font-size: 17px; font-weight: 750; line-height: 1.5; }
+.faq-list p { color: #43536b; margin: 16px 0 0; }
+.contact-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+.contact-actions .button + .button { margin: 0; }
+.contact-email { display: inline-flex; gap: 10px; align-items: center; margin-top: 24px; color: var(--white); overflow-wrap: anywhere; }
+.social-links { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; margin-top: 48px; }
+.social-links a { padding: 20px; border: 1px solid rgba(255,255,255,.25); border-radius: var(--radius-md); color: var(--white); }
+.social-links a:hover { background: rgba(255,255,255,.08); }
+.social-links strong { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+.social-links span { display: block; margin-top: 10px; color: #d9e5f6; font-size: 13px; line-height: 1.6; }
+.button-whatsapp { background: #087c40; border-color: #087c40; }
+.button-whatsapp:hover { background: #066633; }
+@media (max-width: 1080px) {
+  .presence-services { grid-template-columns: 1fr; }
+  .presence-process, .social-links { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 620px) {
+  .presence-card { padding: 24px; }
+  .presence-process, .social-links { grid-template-columns: 1fr; }
+  .contact-actions { flex-direction: column; }
+  .contact-actions .button + .button { margin: 0; }
+  .mobile-contact-bar a:first-child { background: #087c40; }
+  body { padding-bottom: calc(92px + env(safe-area-inset-bottom)); }
+  .mobile-contact-bar { bottom: max(12px, env(safe-area-inset-bottom)); }
+  .hero .eyebrow { line-height: 1.6; }
+}
+
+.presence-services .service-featured > p { color: #d4deec; }

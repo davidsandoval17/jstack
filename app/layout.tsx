@@ -6,22 +6,22 @@ const inter = Inter({ variable: "--font-inter", subsets: ["latin"] });
 const spaceGrotesk = Space_Grotesk({ variable: "--font-display", subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://jstack.dev"),
-  title: { default: "JSTACK | MVPs, aplicaciones web y automatización", template: "%s | JSTACK" },
-  description: "Software Studio para startups y negocios en crecimiento que necesitan lanzar, mejorar o escalar productos digitales.",
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://jstack-six.vercel.app"),
+  title: { default: "JSTACK | Presencia digital para tu negocio", template: "%s | JSTACK" },
+  description: "Páginas web, catálogos digitales y contacto por WhatsApp para darle presencia digital a tu negocio.",
   icons: { icon: "/favicon.svg", shortcut: "/favicon.svg" },
   alternates: { canonical: "/" },
   openGraph: {
     siteName: "JSTACK",
     title: "JSTACK · Software Studio",
-    description: "Convertimos prototipos y procesos definidos en productos digitales funcionales y listos para crecer.",
+    description: "Tu negocio en internet. Sin complicarte. Atención directa con David Sandoval.",
     type: "website",
     locale: "es_PE",
   },
   twitter: {
     card: "summary_large_image",
     title: "JSTACK · Software Studio",
-    description: "MVPs, aplicaciones web y automatización con criterio de negocio.",
+    description: "Páginas web, catálogos digitales y tus redes conectadas. Hablemos por WhatsApp.",
   },
 };
 

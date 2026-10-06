@@ -29,22 +29,22 @@ test("server-renders the JSTACK landing contract", async () => {
   assert.match(response.headers.get("content-type") ?? "", /^text\/html\b/i);
 
   const html = await response.text();
-  assert.match(html, /JSTACK \| MVPs, aplicaciones web y automatización/);
-  assert.match(html, /Construimos productos digitales que cambian negocios\./);
-  assert.match(html, /MVP Build Sprint/);
-  assert.match(html, /4-6 semanas|4 a 6 semanas/);
-  assert.match(html, /Alcance compacto/);
-  assert.match(html, /Ajustada al alcance/);
-  assert.doesNotMatch(html, /4,800|4800|S\/\s*4/i);
-  assert.match(html, /Aplicaciones web/);
-  assert.match(html, /Automatización de procesos/);
-  assert.match(html, /Consultoría y arquitectura/);
-  assert.match(html, /Agenda una llamada/);
-  assert.match(html, /WhatsApp|Escríbenos por WhatsApp/);
-  assert.match(html, /903 081 410/);
+  assert.match(html, /JSTACK \| Presencia digital para tu negocio/);
+  assert.match(html, /Tu negocio en internet\. Sin complicarte\./);
+  assert.match(html, /Una web para tu negocio/);
+  assert.match(html, /Tu catálogo en un enlace/);
+  assert.match(html, /David Sandoval/);
+  assert.match(html, /recibos por honorarios/i);
+  assert.match(html, /\+51 903 081 410/);
   assert.match(html, /https:\/\/wa\.me\/51903081410/);
-  assert.match(html, /data-analytics-event="cta_booking_click"/);
+  assert.match(html, /mailto:jsstack1993@gmail\.com/);
+  assert.match(html, /https:\/\/www\.facebook\.com\/profile\.php\?id=61594907201063/);
+  assert.match(html, /https:\/\/www\.tiktok\.com\/@js_stack/);
+  assert.match(html, /https:\/\/www\.youtube\.com\/channel\/UClDNhSpIB0QooOdFjaxcZUQ/);
+  assert.match(html, /https:\/\/www\.linkedin\.com\/in\/david-sandoval-645652441\//);
   assert.match(html, /data-analytics-event="cta_whatsapp_click"/);
+  assert.match(html, /data-analytics-event="cta_facebook_click"/);
+  assert.doesNotMatch(html, /MVP Build Sprint|Agenda una llamada|hola@jstack\.dev|4-6 semanas/);
   assert.doesNotMatch(html, /Codex is working|Your site is taking shape|react-loading-skeleton|codex-preview/i);
 });
 
@@ -58,11 +58,8 @@ test("keeps landing copy centralized and starter preview disconnected", async ()
 
   assert.match(packageJson, /"lucide-react"/);
   assert.match(content, /export type NavigationItem/);
-  assert.match(content, /export type Service/);
-  assert.match(content, /NEXT_PUBLIC_BOOKING_URL/);
   assert.match(content, /NEXT_PUBLIC_WHATSAPP_URL/);
   assert.match(content, /NEXT_PUBLIC_WHATSAPP_NUMBER/);
-  assert.match(page, /const showProjects = process\.env\.NEXT_PUBLIC_SHOW_PROJECTS === "true"/);
   assert.match(layout, /metadataBase/);
   assert.doesNotMatch(page, /_sites-preview|SkeletonPreview|Lorem ipsum|caso de éxito/i);
 });
