@@ -18,4 +18,4 @@ export function ButtonLink({
   event?: string;
   location?: string;
 }) { return <a className={`button button-${variant} button-${size}`} href={href} data-analytics-event={event} data-analytics-location={location}>{children}</a>; }
-export function SectionHeading({ eyebrow, title, description }: { eyebrow: string; title: string; description: string }) { return <div className="section-heading"><p className="section-index">[ {eyebrow.toUpperCase()} ]</p><div><h2>{title}</h2><p>{description}</p></div></div>; }
+export function SectionHeading({ eyebrow, title, description }: { eyebrow: string; title: string; description: string }) { return <div className="section-heading"><p className="section-index">{eyebrow}</p><div><h2>{title}</h2><p>{description}</p></div></div>; }

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { ArrowUpRight, CheckCircle2, Code2, MessageSquare, Globe, Mail, MessageCircle, PanelsTopLeft, Search, UploadCloud } from "lucide-react";
+import { ArrowUpRight, CheckCircle2, ChevronDown, Code2, MessageSquare, Globe, Mail, MessageCircle, PanelsTopLeft, Search, UploadCloud } from "lucide-react";
 import { contactEmail, contactWhatsappDisplay, emailHref, faqs, footer, hero, navigation, primaryCta, processSteps, services, socialLinks, technologies, whatsappCta, whatsappLink } from "./landing-content";
 import { Brand, ButtonLink, Container, SectionHeading } from "./ui";
 import { MobileMenu } from "./mobile-menu";
@@ -35,7 +35,7 @@ function HeroSection() {
     <Container className="hero-layout">
       <div className="hero-copy">
         <p className="eyebrow"><span />{hero.eyebrow}</p>
-        <h1 id="hero-title">{hero.title}</h1>
+        <h1 id="hero-title">{hero.title.split(". ")[0]}. <span>{hero.title.split(". ")[1]}</span></h1>
         <p className="hero-lead">{hero.description}</p>
         <div className="hero-actions">
           <ButtonLink href={primaryCta.href} variant="whatsapp" event={primaryCta.analyticsEvent} location="hero"><WhatsAppIcon />{primaryCta.label}</ButtonLink>
@@ -110,7 +110,7 @@ function TechnologySection() {
 function FaqSection() {
   return <section id="preguntas" className="section-pad"><Container>
     <SectionHeading eyebrow="Antes de empezar" title="Tus dudas, con respuestas claras." description="Estos son los puntos que coordinamos para trabajar con tranquilidad." />
-    <div className="faq-list">{faqs.map(item => <details key={item.question}><summary>{item.question}</summary><p>{item.answer}</p></details>)}</div>
+    <div className="faq-list">{faqs.map(item => <details key={item.question}><summary><span>{item.question}</span><ChevronDown size={20} aria-hidden="true" /></summary><p>{item.answer}</p></details>)}</div>
   </Container></section>;
 }
 
